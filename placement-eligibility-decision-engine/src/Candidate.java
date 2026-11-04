@@ -16,11 +16,6 @@ public class Candidate {
         this.skills = skills;
     }
 
-    // 4-parameter overloaded constructor
-    public Candidate(String name, double percentage, int backlogs, int graduationYear) {
-        this(name, percentage, backlogs, graduationYear, new String[0]);
-    }
-
     // Getter methods
     public String getName() {
         return name;
@@ -72,7 +67,7 @@ public class Candidate {
         System.out.println("Percentage: " + candidate.getPercentage());
         System.out.println("Backlogs: " + candidate.getBacklogs());
         System.out.println("Graduation Year: " + candidate.getGraduationYear());
-
+        System.out.println("Skills: " + String.join(", ", candidate.getSkills()));
         scanner.close();
     }
 }
