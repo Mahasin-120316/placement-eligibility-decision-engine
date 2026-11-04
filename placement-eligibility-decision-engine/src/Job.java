@@ -25,16 +25,6 @@ public class Job {
         this.requiredSkills = requiredSkills;
     }
 
-    // 5-parameter overloaded constructor
-    public Job(
-            String company,
-            String role,
-            double minimumPercentage,
-            int maximumBacklogs,
-            int requiredGraduationYear) {
-        this(company, role, minimumPercentage, maximumBacklogs, requiredGraduationYear, new String[0]);
-    }
-
     public String getCompany() {
         return company;
     }
