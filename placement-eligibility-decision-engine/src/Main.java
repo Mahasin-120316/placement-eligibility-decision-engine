@@ -21,11 +21,7 @@ public class Main {
                 65.0,
                 0,
                 2026);
-        EligibilityRule[] rules = {
-                new PercentageRule(),
-                new BacklogRule(),
-                new GraduationYearRule()
-        };
+        EligibilityChecker checker = new EligibilityChecker();
 
         System.out.println("===================================");
         System.out.println("PLACEMENT ELIGIBILITY RESULT");
@@ -37,18 +33,8 @@ public class Main {
         System.out.println("Role : " + job.getRole());
         System.out.println();
 
-        boolean eligible = true;
-
-        for (int i = 0; i < rules.length; i++) {
-            boolean passed = rules[i].check(candidate, job);
-
-            if (passed) {
-                System.out.println(rules[i].getRuleName() + " : PASS");
-            } else {
-                System.out.println(rules[i].getRuleName() + " : FAIL");
-                eligible = false;
-            }
-        }
+        boolean eligible = checker.evaluate(candidate, job);
+        
         System.out.println();
 
         if (eligible) {
