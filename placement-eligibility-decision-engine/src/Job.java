@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Job {
@@ -6,28 +7,32 @@ public class Job {
     private double minimumPercentage;
     private int maximumBacklogs;
     private int requiredGraduationYear;
+    private String[] requiredSkills;
 
-    // 5-parameter constructor
+    // 6-parameter constructor
+    public Job(
+            String company,
+            String role,
+            double minimumPercentage,
+            int maximumBacklogs,
+            int requiredGraduationYear,
+            String[] requiredSkills) {
+        this.company = company;
+        this.role = role;
+        this.minimumPercentage = minimumPercentage;
+        this.maximumBacklogs = maximumBacklogs;
+        this.requiredGraduationYear = requiredGraduationYear;
+        this.requiredSkills = requiredSkills;
+    }
+
+    // 5-parameter overloaded constructor
     public Job(
             String company,
             String role,
             double minimumPercentage,
             int maximumBacklogs,
             int requiredGraduationYear) {
-        this.company = company;
-        this.role = role;
-        this.minimumPercentage = minimumPercentage;
-        this.maximumBacklogs = maximumBacklogs;
-        this.requiredGraduationYear = requiredGraduationYear;
-    }
-
-    // Optional 4-parameter overloaded constructor (defaults maximumBacklogs to 0)
-    public Job(
-            String company,
-            String role,
-            double minimumPercentage,
-            int requiredGraduationYear) {
-        this(company, role, minimumPercentage, 0, requiredGraduationYear);
+        this(company, role, minimumPercentage, maximumBacklogs, requiredGraduationYear, new String[0]);
     }
 
     public String getCompany() {
@@ -50,6 +55,10 @@ public class Job {
         return requiredGraduationYear;
     }
 
+    public String[] getRequiredSkills() {
+        return requiredSkills;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -57,19 +66,27 @@ public class Job {
         double percentage = scanner.nextDouble();
         int backlogs = scanner.nextInt();
         int graduationYear = scanner.nextInt();
+        int skillCount = scanner.nextInt();
+        String[] skills = new String[skillCount];
+        for (int i = 0; i < skillCount; i++) {
+            skills[i] = scanner.next();
+        }
+        String[] requiredSkills = {"Java", "SQL"};
 
         Candidate candidate = new Candidate(
                 name,
                 percentage,
                 backlogs,
-                graduationYear);
+                graduationYear,
+                skills);
 
         Job job = new Job(
                 "Infosys",
                 "Java Developer",
                 65.0,
                 0,
-                2026);
+                2026,
+                requiredSkills);
 
         System.out.println("Candidate: " + candidate.getName());
         System.out.println("Company: " + job.getCompany());
@@ -77,6 +94,7 @@ public class Job {
         System.out.println("Minimum Percentage: " + job.getMinimumPercentage());
         System.out.println("Maximum Backlogs: " + job.getMaximumBacklogs());
         System.out.println("Required Graduation Year: " + job.getRequiredGraduationYear());
+        System.out.println("Required Skills: " + Arrays.toString(job.getRequiredSkills()));
 
         scanner.close();
     }

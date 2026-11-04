@@ -1,17 +1,5 @@
 import java.util.Scanner;
 
-class GraduationYearRule extends EligibilityRule {
-    @Override
-    public String getRuleName() {
-        return "Graduation Year";
-    }
-
-    @Override
-    public boolean check(Candidate candidate, Job job) {
-        return candidate.getGraduationYear() == job.getRequiredGraduationYear();
-    }
-}
-
 public class Check {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

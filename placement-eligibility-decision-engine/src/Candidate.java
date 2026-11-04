@@ -7,13 +7,18 @@ public class Candidate {
     private int graduationYear;
     private String[] skills;
 
-    // Constructor
+    // 5-parameter constructor
     public Candidate(String name, double percentage, int backlogs, int graduationYear, String[] skills) {
         this.name = name;
         this.percentage = percentage;
         this.backlogs = backlogs;
         this.graduationYear = graduationYear;
         this.skills = skills;
+    }
+
+    // 4-parameter overloaded constructor
+    public Candidate(String name, double percentage, int backlogs, int graduationYear) {
+        this(name, percentage, backlogs, graduationYear, new String[0]);
     }
 
     // Getter methods
@@ -32,7 +37,15 @@ public class Candidate {
     public int getGraduationYear() {
         return graduationYear;
     }
+
+    public String[] getSkills() {
+        return skills;
+    }
+
     public boolean hasSkill(String requiredSkill) {
+        if (skills == null) {
+            return false;
+        }
         for (int i = 0; i < skills.length; i++) {
             if (skills[i].equalsIgnoreCase(requiredSkill)) {
                 return true;
@@ -48,8 +61,9 @@ public class Candidate {
         double percentage = scanner.nextDouble();
         int backlogs = scanner.nextInt();
         int graduationYear = scanner.nextInt();
-        String [] skills = new String[scanner.nextInt()];
-        for (int i=0;i<skills.length;i++){
+        int skillCount = scanner.nextInt();
+        String[] skills = new String[skillCount];
+        for (int i = 0; i < skills.length; i++) {
             skills[i] = scanner.next();
         }
         Candidate candidate = new Candidate(name, percentage, backlogs, graduationYear, skills);
